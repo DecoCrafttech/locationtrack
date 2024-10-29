@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import LiveLocation from './LiveLocation';
+import TrackLocation from './TrackLocation';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div>
+        <h1>Live Location Sharing App</h1>
+        <Routes >
+          <Route path="/track/:userId" element={<TrackLocation userId="user1" />} />
+          <Route path="/" element={<LiveLocation userId="user1" />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
